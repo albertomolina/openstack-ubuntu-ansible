@@ -46,10 +46,6 @@ cpu_allocation_ratio: 8
 # ram_allocation_ratio: 1.5
 ram_allocation_ratio: 0.8
 
-# Log verbosity
-log_debug: False
-# log_verbose: True
-
 # Neutron
 shared_secret: "asdasd"
 
