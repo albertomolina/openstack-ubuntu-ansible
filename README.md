@@ -3,7 +3,7 @@ openstack-ubuntu-ansible
 
 Ansible playbooks for installing OpenStack on Ubuntu.
 
-## Software used at this moment (specific versions):
+## Software used (specific versions):
 
 - Ubuntu 14.04 LTS
 - Linux kernel: 3.13.0-X-generic
@@ -21,7 +21,7 @@ Keystone, Glance, Nova (KVM/Qemu), Neutron (OVS with VXLAN), Cinder (LVM+iSCSI) 
 
 ## All in One node
 
-The file *groups_var/all* contains all variables needed by ansible playbooks and
+The file *group_var/all* contains all variables needed by ansible playbooks and
 they can be customized if needed. It's **mandatory** to define the following
 variables according to the server's external network:
 
