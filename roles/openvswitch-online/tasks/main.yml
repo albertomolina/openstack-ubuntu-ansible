@@ -1,0 +1,8 @@
+- name: ensure br-int switch is created
+  openvswitch_bridge: bridge=br-int state=present
+  notify: restart ovs agent
+  
+- name: ensure br-ex switch is created
+  openvswitch_bridge: bridge=br-ex state=present
+  notify: restart ovs agent
+
