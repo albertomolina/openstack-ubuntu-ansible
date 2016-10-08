@@ -17,7 +17,7 @@ int_net_nic: eth1
 ext_net_nic: eth2
 
 # MySQL passwords
-root_db_password: "asdasd" 
+root_db_password: "" 
 keystone_db_password: "asdasd"
 glance_db_password: "asdasd"
 cinder_db_password: "asdasd"

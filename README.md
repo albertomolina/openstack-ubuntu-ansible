@@ -5,11 +5,11 @@ Ansible playbooks for installing OpenStack on Ubuntu.
 
 ## Software used (specific versions):
 
-- Ubuntu 14.04 LTS
-- Linux kernel: 3.13.0-X-generic
-- Open vSwitch: 2.0.2
-- OpenStack: Kilo (2015.1)
-- Ansible: 1.7.2
+- Ubuntu 16.04 LTS
+- Linux kernel: 4.4.0-X-generic
+- Open vSwitch: 2.5.0
+- OpenStack: Mitaka
+- Ansible: 2.1.2
 
 ## Jumbo frames
 

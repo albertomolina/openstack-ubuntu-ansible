@@ -1,13 +1,14 @@
 - name: Ensure mysql server and mysql python client are installed
   apt: pkg={{ item }} 
   with_items:
-    - python-mysqldb
     - mysql-server
+    - python-pymysql
+    - python-mysqldb
 
 - name: Ensure mysql binds to internal interface
   template: >
-    src=etc/my.cnf 
-    dest=/etc/mysql/my.cnf 
+    src=etc/mysql/mysql.conf.d/mysqld.cnf 
+    dest=/etc/mysql/mysql.conf.d/mysqld.cnf 
     owner=root 
     group=root 
     mode=0644
