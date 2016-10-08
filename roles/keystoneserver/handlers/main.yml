@@ -4,3 +4,5 @@
 - name: start keystone
   service: name=keystone state=started
 
+- name: restart apache2
+  service: name=apache2 state=restarted

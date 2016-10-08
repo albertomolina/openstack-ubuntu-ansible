@@ -3,13 +3,17 @@
   with_items:
     - keystone
     - python-keystone
-    - python-keystoneclient
     - python-oslo.db
-  notify: restart keystone
-  
-- name: ensure sqlite keystone database is deleted
-  file: dest=/var/lib/keystone/keystone.db state=absent
 
+- name: ensure keystone service is stopped and disabled
+  service: name=keystone state=stopped enabled=no
+    
+- name: ensure apache2 and apache wsgi module are installed
+  apt: name={{ item }}
+  with_items:
+    - apache2
+    - libapache2-mod-wsgi
+                
 - name: ensure keystone config script is present
   template: >
     src=etc/keystone/keystone.conf
@@ -19,6 +23,31 @@
     mode=0600
 
 - name: DB sync for keystone
-  shell: >
-    /usr/bin/keystone-manage db_sync
-  notify: restart keystone
+  shell: /usr/bin/keystone-manage db_sync
+
+- name: Fernet keys initialization
+  shell: /usr/bin/keystone-manage fernet_setup --keystone-user keystone --keystone-group keys\tone
+
+- name: ensure apache2 config is present
+  template: >-
+    src=etc/apache2/apache2.conf
+    dest=/etc/apache2/apache2.conf
+    owner=root
+    group=root
+    mode=0600
+
+- name: ensure virtual host wsgi config is present
+  template: >-
+    src=etc/apache2/sites-available/wsgi-keystone.conf
+    dest=/etc/apache2/sites-available/wsgi-keystone.conf
+    owner=root
+    group=root
+    mode=0600
+
+- name: ensure virtual host wsgi is enabled
+  shell: /usr/sbin/a2ensite wsgi-keystone.conf
+  notify: restart apache2
+
+- name: ensure sqlite keystone database is deleted
+  file: dest=/var/lib/keystone/keystone.db state=absent
+                                                                  
